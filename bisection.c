@@ -1,42 +1,51 @@
-// Online C compiler to run C program online
+
+    
 #include <stdio.h>
 #include<math.h>
 float f(float a)
 {
-    return(a*log10(a) - 1.2);
+     return((cos(a)+1)/3);
 }
-
+float f_(float a)
+{
+    return((-1*sin(a))/3);
+}
+float ori(float a)
+{
+    return(cos(a)+1-3*a);
+}
 int main() {
 float a,b;
 while(1){
 printf("Enter the value  of a,b");
-scanf("%f %f",&a,&b);
-if(f(a)*f(b)<0)
+scanf("%f",&a);
+if(f_(a)<1)
 {
-    printf("\nroots lie between a,b");
+    printf("\nvalid value");
     break;
 }
-printf("\nRoots notlie between a&b...re-enter the value..");
+printf("\ninvalid value");
 }
+
 float tol;
 printf("\nEnter the tolerance");
 scanf("%f",&tol);
 int it=0;
+float temp=f(a);
 while(1)
 {
     it++;
-    float x=(a+b)/2;
-    if(fabs(f(x))<tol)
+
+    if(fabs(ori(a))<tol)
     {
-        printf("\nFinal ans after %d iteration=%f",it,x);
+        printf("\nFinal ans after %d iteration=%f",it,a);
         break;
     }
     
-    printf("\nAfter %d iteration =%f",it,x);
-    if(f(a)*f(x)<0)
-    b=x;
-    else
-    a=x;
+    printf("\nAfter %d iteration =%f %f",it,a,f(a));
+   
+    a=f(a);
+    
 }
 
     return 0;
